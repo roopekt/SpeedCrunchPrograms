@@ -1,0 +1,362 @@
+{
+    "functions": [
+        {
+            "args": [
+                "num",
+                "guess"
+            ],
+            "expression": "g_countBothGivenBullsDecimal(num; guess; g_countBullsDecimal(num; guess))",
+            "name": "g_countBothDecimal"
+        },
+        {
+            "args": [
+                "num",
+                "guess",
+                "bullCount"
+            ],
+            "expression": "bullCount + (g_countAllDecimal(num; guess) - bullCount)*j",
+            "name": "g_countBothGivenBullsDecimal"
+        },
+        {
+            "args": [
+                "a",
+                "b",
+                "seed"
+            ],
+            "expression": "int(a + (b - a) * g_rand01(seed) * .999 + .001)",
+            "name": "g_randRangeInt"
+        },
+        {
+            "args": [
+                "num",
+                "guess"
+            ],
+            "expression": "g_countBits4(g_getBullMask(g_split4digitNum(num); g_split4digitNum(guess)))",
+            "name": "g_countBullsDecimal"
+        },
+        {
+            "args": [
+                "numA",
+                "numB"
+            ],
+            "expression": "g_areDigitsEq(numA; numB; 0) + g_areDigitsEq(numA; numB; 1)*2 + g_areDigitsEq(numA; numB; 2)*4 + g_areDigitsEq(numA; numB; 3)*8",
+            "name": "g_getBullMask"
+        },
+        {
+            "args": [
+                "numA",
+                "numB",
+                "i"
+            ],
+            "expression": "g_eq(and(numA; round(15*16^i)); and(numB; round(15*16^i)))",
+            "name": "g_areDigitsEq"
+        },
+        {
+            "args": [
+                "bits",
+                "i"
+            ],
+            "expression": "sgn(and(bits; shl(1; i)))",
+            "name": "g_getBit"
+        },
+        {
+            "args": [
+                "isNewMatch",
+                "fmaskA",
+                "iA",
+                "fmaskB",
+                "iB"
+            ],
+            "expression": "g_xorBit(fmaskA; iA; isNewMatch) + g_xorBit(fmaskB; iB; isNewMatch)*j",
+            "name": "g_updateFMask1CLow"
+        },
+        {
+            "args": [
+                "numA",
+                "iA",
+                "numB",
+                "iB"
+            ],
+            "expression": "g_eq(g_getDigit(numA; iA); g_getDigit(numB; iB))",
+            "name": "g_areDigitsEqII"
+        },
+        {
+            "args": [
+                "seed"
+            ],
+            "expression": "g_hashf(g_hashf(g_hashf(seed)))",
+            "name": "g_rand01"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "g_init_bullcow(x)",
+            "name": "gi"
+        },
+        {
+            "args": [
+                "num",
+                "guess"
+            ],
+            "expression": "g_countBits4(g_updateFMaskAll(g_getBullMask(num; guess); num; guess))",
+            "name": "g_countAll"
+        },
+        {
+            "args": [
+                "num",
+                "guess"
+            ],
+            "expression": "g_countAll(g_split4digitNum(num); g_split4digitNum(guess))",
+            "name": "g_countAllDecimal"
+        },
+        {
+            "args": [
+                "fmaskA_fmaskB",
+                "numA",
+                "numB",
+                "iB"
+            ],
+            "expression": "g_updateFMask1C(g_updateFMask1C(g_updateFMask1C(g_updateFMask1C(fmaskA_fmaskB; numA; 0; numB; iB); numA; 1; numB; iB); numA; 2; numB; iB); numA; 3; numB; iB)",
+            "name": "g_updateFMaskAllA"
+        },
+        {
+            "args": [
+                "fmask",
+                "numA",
+                "numB"
+            ],
+            "expression": "real(g_updateFMaskAllA(g_updateFMaskAllA(g_updateFMaskAllA(g_updateFMaskAllA(fmask+fmask*j; numA; numB; 0); numA; numB; 1); numA; numB; 2); numA; numB; 3))",
+            "name": "g_updateFMaskAll"
+        },
+        {
+            "args": [
+            ],
+            "expression": "g_softDecrypt(g_get1(imag(ans); g_correctDigitCount))",
+            "name": "g_getCorrect"
+        },
+        {
+            "args": [
+                "num"
+            ],
+            "expression": "round( g_extractDigitB10(num; 0) + g_extractDigitB10(num; 1) * 16 + g_extractDigitB10(num; 2) * 16^2 + g_extractDigitB10(num; 3) * 16^3 )",
+            "name": "g_split4digitNum"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "g_bullcow_game(x)",
+            "name": "g"
+        },
+        {
+            "args": [
+                "bool",
+                "a",
+                "b"
+            ],
+            "expression": "g_not(bool) * a + bool * b",
+            "name": "g_pick"
+        },
+        {
+            "args": [
+                "bnum"
+            ],
+            "expression": "sgn(and(bnum; 1)) + sgn(and(bnum; 2)) + sgn(and(bnum; 4)) + sgn(and(bnum; 8))",
+            "name": "g_countBits4"
+        },
+        {
+            "args": [
+                "tuple",
+                "digitCount"
+            ],
+            "expression": "floor(tuple)",
+            "name": "g_get0"
+        },
+        {
+            "args": [
+                "answer"
+            ],
+            "expression": "g_encodeTuple(0; g_softCrypt(g_pick(g_eq(answer; 0); answer; g_randRangeInt(0; 9999; real(ans)+imag(ans)))); g_correctDigitCount )*j",
+            "name": "g_init_bullcow"
+        },
+        {
+            "args": [
+                "correct",
+                "guess"
+            ],
+            "expression": "g_complexToTuple(g_countBothDecimal(correct; guess); 1)",
+            "name": "g_getBullCowDesc"
+        },
+        {
+            "args": [
+                "splitNum",
+                "i"
+            ],
+            "expression": "round(and(splitNum; round(0xF*16^i)) / 16^i)",
+            "name": "g_getDigit"
+        },
+        {
+            "args": [
+                "numA",
+                "iA",
+                "fmaskA",
+                "numB",
+                "iB",
+                "fmaskB"
+            ],
+            "expression": "g_areDigitsEqII(numA; iA; numB; iB) * g_not(g_getBit(fmaskA; iA)) * g_not(g_getBit(fmaskB; iB))",
+            "name": "g_isNewMatch"
+        },
+        {
+            "args": [
+            ],
+            "expression": "g_get1(imag(ans); g_correctDigitCount)",
+            "name": "g_getCorrectEncoded"
+        },
+        {
+            "args": [
+                "complex",
+                "digitCount"
+            ],
+            "expression": "g_encodeTuple(real(complex); imag(complex); digitCount)",
+            "name": "g_complexToTuple"
+        },
+        {
+            "args": [
+                "tuple",
+                "digitCount"
+            ],
+            "expression": "round(frac(tuple) * 10^digitCount)",
+            "name": "g_get1"
+        },
+        {
+            "args": [
+                "a",
+                "b",
+                "digitCount"
+            ],
+            "expression": "a + b / (10 ^ digitCount)",
+            "name": "g_encodeTuple"
+        },
+        {
+            "args": [
+                "a",
+                "b",
+                "c",
+                "d"
+            ],
+            "expression": "g_encodeTuple(a; b) + g_encodeTuple(c; d)*j",
+            "name": "g_packTuple4"
+        },
+        {
+            "args": [
+                "a",
+                "b"
+            ],
+            "expression": "g_not(abs(sgn(a - b)))",
+            "name": "g_eq"
+        },
+        {
+            "args": [
+                "num",
+                "i"
+            ],
+            "expression": "round(( int(num / 10^i)*10^i - int(num / 10^(i+1))*10^(i+1) ) / 10^i)",
+            "name": "g_extractDigitB10"
+        },
+        {
+            "args": [
+                "bits",
+                "i",
+                "xorWith"
+            ],
+            "expression": "xor(bits; shl(xorWith; i))",
+            "name": "g_xorBit"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "1-x",
+            "name": "g_not"
+        },
+        {
+            "args": [
+                "fmaskA_fmaskB",
+                "numA",
+                "iA",
+                "numB",
+                "iB"
+            ],
+            "expression": "g_updateFMask1CLow(g_isNewMatch(numA; iA; real(fmaskA_fmaskB); numB; iB; imag(fmaskA_fmaskB)); real(fmaskA_fmaskB); iA; imag(fmaskA_fmaskB); iB)",
+            "name": "g_updateFMask1C"
+        },
+        {
+            "args": [
+            ],
+            "expression": "g_get0(imag(ans); g_correctDigitCount)",
+            "name": "g_getPoints"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "abs(frac(sin(943x+732)*298))",
+            "name": "g_hashf"
+        },
+        {
+            "args": [
+                "guess"
+            ],
+            "expression": "g_getBullCowDesc(g_getCorrect(); guess) + g_encodeTuple(g_getPoints() + 1; g_getCorrectEncoded(); g_correctDigitCount)*j",
+            "name": "g_bullcow_game"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "xor(x; g_softCrypter)",
+            "name": "g_softCrypt"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "xor(x; g_softCrypter)",
+            "name": "g_softDecrypt"
+        }
+    ],
+    "history": [
+    ],
+    "variables": [
+        {
+            "identifier": "g_correctDigitCount",
+            "type": "User",
+            "value": {
+                "numeric_value": {
+                    "value": "5.000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                }
+            }
+        },
+        {
+            "identifier": "g_softCrypter",
+            "type": "User",
+            "value": {
+                "numeric_value": {
+                    "value": "35522.000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                }
+            }
+        },
+        {
+            "identifier": "ans",
+            "type": "BuiltIn",
+            "value": {
+                "numeric_value": {
+                    "value": "0"
+                }
+            }
+        }
+    ],
+    "version": "0.12"
+}

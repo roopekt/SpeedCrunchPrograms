@@ -1,0 +1,166 @@
+{
+    "functions": [
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "abs(frac(sin(943x+732)*298))",
+            "name": "g_hashf"
+        },
+        {
+            "args": [
+                "guess"
+            ],
+            "expression": "g_randb10(3 + g_updatePoints(imag(ans); g_eq(real(ans); guess)); real(ans)) + g_updatePoints(imag(ans); g_eq(real(ans); guess))*j",
+            "name": "g_memory_game"
+        },
+        {
+            "args": [
+                "currentPoints",
+                "wasCorrect"
+            ],
+            "expression": "(currentPoints + 1) * wasCorrect",
+            "name": "g_updatePoints"
+        },
+        {
+            "args": [
+                "a",
+                "b",
+                "seed"
+            ],
+            "expression": "int(a + (b - a) * g_rand01(seed) * .999 + .001)",
+            "name": "g_randRangeInt"
+        },
+        {
+            "args": [
+                "digitCount",
+                "seed"
+            ],
+            "expression": "g_randRangeInt(10^digitCount / 9; 10^digitCount; seed)",
+            "name": "g_randb10"
+        },
+        {
+            "args": [
+                "seed"
+            ],
+            "expression": "g_hashf(g_hashf(g_hashf(seed)))",
+            "name": "g_rand01"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "g_memory_game(x)",
+            "name": "g"
+        },
+        {
+            "args": [
+                "a",
+                "b"
+            ],
+            "expression": "g_not(abs(sgn(a - b)))",
+            "name": "g_eq"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "1-x",
+            "name": "g_not"
+        }
+    ],
+    "history": [
+        {
+            "expression": "g(x) = g_memory_game(x)",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_eq(a;b) = g_not(abs(sgn(a - b)))",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_hashf(x) = abs(frac(sin(943x+732)*298))",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_memory_game(guess) = g_randb10(3 + g_updatePoints(imag(ans); g_eq(real(ans); guess)); real(ans)) + g_updatePoints(imag(ans); g_eq(real(ans); guess))*j",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_not(x) = 1-x",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_rand01(seed) = g_hashf(g_hashf(g_hashf(seed)))",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_randb10(digitCount;seed) = g_randRangeInt(10^digitCount / 9; 10^digitCount; seed)",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_randRangeInt(a;b;seed) = int(a + (b - a) * g_rand01(seed) * .999 + .001)",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "g_updatePoints(currentPoints;wasCorrect) = (currentPoints + 1) * wasCorrect",
+            "result": {
+                "numeric_value": {
+                    "value": "NaN"
+                }
+            }
+        },
+        {
+            "expression": "0",
+            "result": {
+                "numeric_value": {
+                    "value": "0"
+                }
+            }
+        }
+    ],
+    "variables": [
+        {
+            "identifier": "ans",
+            "type": "BuiltIn",
+            "value": {
+                "numeric_value": {
+                    "value": "0"
+                }
+            }
+        }
+    ],
+    "version": "0.12"
+}
